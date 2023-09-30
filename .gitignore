@@ -26,3 +26,5 @@ replay_pid*
 # Folder exceptions
 ./Screenshots ChatGPT/*
 *.jpg
+
+.idea

@@ -15,11 +15,13 @@ public class ActivityCommands {
         this.activityFinderClient = activityFinderClient;
     }
 
-    @ShellMethod(key = "activity", value = "Suggests a activity. By default this would be a random activity, use options to filter the activities.")
+    // Implementation of the CL Command
+    @ShellMethod(key = "get", value = "Suggests a activity. By default this would be a random activity, use options to filter the activities by type.")
     public String getActivity(@ShellOption(defaultValue = "random") String arg) {
 
         ActivityResponse activityResponse; // = activityFinderClient.random();
 
+        // Evaluate the filter and request a activity from bored API
         switch (arg) {
             case "random":
                 activityResponse = activityFinderClient.random();
@@ -52,9 +54,13 @@ public class ActivityCommands {
                 activityResponse = activityFinderClient.busywork();
                 break;
             default:
-                return "Not a valid type!";
+                // If the given argument is not a valid type
+                return "Not a valid type! Use no filter or one of these valid types: education, recreational, social, diy, charity, cooking, relaxation, music, busywork";
         }
 
+        // Returns the activity field from the response as a String
         return activityResponse.activity();
     }
+
+
 }

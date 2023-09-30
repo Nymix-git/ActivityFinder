@@ -5,6 +5,7 @@ import org.springframework.web.service.annotation.GetExchange;
 
 public interface ActivityFinderClient {
 
+    // Methods to fetch the data from the bored API
     @GetExchange("/")
     ActivityResponse random();
 
