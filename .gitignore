@@ -24,7 +24,7 @@ hs_err_pid*
 replay_pid*
 
 # Folder exceptions
-./Screenshots ChatGPT/*
+Screenshots ChatGPT/
 *.jpg
 
-.idea
+.idea/

@@ -17,9 +17,10 @@ public class ActivityCommands {
 
     // Implementation of the CL Command
     @ShellMethod(key = "get", value = "Suggests a activity. By default this would be a random activity, use options to filter the activities by type.")
-    public String getActivity(@ShellOption(defaultValue = "random") String arg) {
+    public String getActivity(@ShellOption(defaultValue = "random", valueProvider = Autocomplete.class) String arg) {
 
-        ActivityResponse activityResponse; // = activityFinderClient.random();
+        ActivityResponse activityResponse;
+
 
         // Evaluate the filter and request a activity from bored API
         switch (arg) {
