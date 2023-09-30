@@ -1,0 +1,67 @@
+openapi: 3.0.3
+info:
+  version: 1.0.0
+  title: BoredAPI Client
+  description: API to retrieve activities from BoredAPI
+
+servers:
+  - url: http://www.boredapi.com/api
+
+paths:
+  /activity:
+    get:
+      summary: Get a random activity
+      description: Retrieve a random activity from the Bored API.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivityResponse'
+
+  /activity/:
+    get:
+      summary: Get an activity by type
+      description: Retrieve an activity of a specific type from the Bored API.
+      parameters:
+        - name: type
+          in: query
+          description: Type of activity (e.g., education, recreational, social, etc.)
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivityResponse'
+
+components:
+  schemas:
+    ActivityResponse:
+      type: object
+      properties:
+        activity:
+          type: string
+          description: The activity retrieved from the Bored API
+        type:
+          type: string
+          description: The type of activity (e.g., education, recreational, social, etc.)
+        participants:
+          type: integer
+          description: The number of people who can attend this activity
+        price:
+          type: number
+          description: A cost factor from 0 - 1
+        link:
+          type: string
+          description: A link to the website of the activity
+        key:
+          type: string
+          description: A unique identifier for the activity
+        accessibility:
+          type: number
+          description: A factor from 0 to 1 which describes how possible an event is to do (zero is most accessible)
